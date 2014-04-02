@@ -4,7 +4,7 @@ var GameLayer = cc.LayerColor.extend({
         this.setPosition( new cc.Point( 0, 0 ) );
         this.back = new Background();
         this.back.setAnchorPoint(0,0);
-        this.back.setScale(1.8);
+        this.back.setScale(5);
         this.addChild( this.back );
        
         this.map = new Map();
