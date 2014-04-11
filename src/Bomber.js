@@ -10,15 +10,22 @@ var Bomber = cc.Sprite.extend({
         this.setAnchorPoint( cc.p( 0, 0 ) );
 		this.x = x;
         this.y = y;
+        this.isRight = false;
+        this.isLeft = false;
+        this.isUp = false;
+        this.isDown = false;
+
 	},
-	closeTo: function( obj ) {
-		var myPos = this.getPosition();
-		var oPos = obj.getPosition();
-  		return ( ( Math.abs( myPos.x - oPos.x ) <= 20 ) || ( Math.abs( myPos.y - oPos.y ) <= 20 ) );
+
+	closeTo: function( mapArr ) {
+		var mapPos = mapArr.getPosition();
+  		return  (Math.abs( this.nextPositionX - mapPos.x ) <= 30 ) && ( Math.abs(this.nextPositionY - mapPos.y) <= 30 );
     },
+
     updatePosition: function() {
         this.setPosition( cc.p( this.x, this.y ) );
     },
+
     setNextDirection: function( dir,map ) {
 
     	this.nextDirection = dir;
@@ -32,17 +39,18 @@ var Bomber = cc.Sprite.extend({
     	if(dir == Bomber.DIR.UP) this.nextPositionY = this.y+Bomber.MOVE_STEP;
     	
     	for(var i = 0 ; i < mapArray.length ; i++ ){
-    		if((Math.abs( this.nextPositionX - mapArray[i].getPosition().x ) <= 30 ) && ( Math.abs( this.nextPositionY - mapArray[i].getPosition().y ) <= 30 )){
+    		if( this.closeTo(mapArray[i]) ){
 				this.nextDirection = Bomber.DIR.STILL;
 				break;
 			}
     	}
   		this.direction = this.nextDirection;
     },
+
     placeBomb: function(map){
     	var mapArray = map.arr;
     	for(var i = 0 ; i < mapArray.length ; i++ ){
-    		if(((Math.abs( this.x - mapArray[i].getPosition().x ) <= 30 ) && ( Math.abs( this.y - mapArray[i].getPosition().y ) <= 30 ) )|| this.bomb == 0 ){
+    		if((this.closeTo(mapArray[i]) )|| this.bomb == 0 ){
 				return false;
 			}
     	}
@@ -50,34 +58,48 @@ var Bomber = cc.Sprite.extend({
     	return true;
     },
 
+    setBomb: function(){
+        this.bomb++;
+    },
+
+    setDirection: function(isMove, dir ){
+        if(dir == Bomber.DIR.UP)This.isUP = true;
+        if(dir == Bomber.DIR.LEFT)This.isLeft = true;
+        if(dir == Bomber.DIR.RIGHT)This.isRight = true;
+        if(dir == Bomber.DIR.DOWN)This.isDown = true;
+    },
+
+
 
 
     update: function( dt ){
-    	switch ( this.direction ){
-    		case Bomber.DIR.UP:
-    			this.y += Bomber.MOVE_STEP;
-    			this.direction = Bomber.DIR.STILL;
-    			break;
-    		case Bomber.DIR.DOWN:
-    			this.y -= Bomber.MOVE_STEP;
-    			this.direction = Bomber.DIR.STILL;
-    			break;
-    		case Bomber.DIR.LEFT:
-    			this.x -= Bomber.MOVE_STEP;
-    			this.direction = Bomber.DIR.STILL;
-    			break;
-    		case Bomber.DIR.RIGHT:
-    			this.x += Bomber.MOVE_STEP;
-    			this.direction = Bomber.DIR.STILL;
-    			break; 
-    		default: break;
-    	}
+    	
+        if(this.direction == Bomber.DIR.UP){
+            this.y += Bomber.MOVE_STEP;
+            this.direction = Bomber.DIR.STILL;
+        }
+        if(this.direction == Bomber.DIR.DOWN){
+            this.y -= Bomber.MOVE_STEP;
+            this.direction = Bomber.DIR.STILL;       
+        }
+        if(this.direction == Bomber.DIR.LEFT){
+            this.x -= Bomber.MOVE_STEP;
+            this.direction = Bomber.DIR.STILL;
+        }
+        if(this.direction == Bomber.DIR.RIGHT){
+            this.x += Bomber.MOVE_STEP;
+            this.direction = Bomber.DIR.STILL;
+                
+        }
+
+
+
     	this.updatePosition();
     },
 
 })
 
-Bomber.MOVE_STEP = 10;
+Bomber.MOVE_STEP = 5;
 Bomber.DIR = {
 	LEFT: 1,
 	RIGHT: 2,

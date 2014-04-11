@@ -35,9 +35,7 @@ var GameLayer = cc.LayerColor.extend({
             break;
         case cc.KEY.space:
             if(this.player.placeBomb(this.map)){
-                this.bomb = new Bomb();
-                this.bomb.setAnchorPoint(cc.p(0,0));
-                this.bomb.setPosition(this.player.getPosition().x,this.player.getPosition().y);
+                this.bomb = new Bomb(this.player);
                 this.map.addChild(this.bomb);
             }
             break;
