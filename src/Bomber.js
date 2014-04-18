@@ -10,6 +10,7 @@ var Bomber = cc.Sprite.extend({
         this.setAnchorPoint( cc.p( 0, 0 ) );
 		this.x = x;
         this.y = y;
+        this.setPosition(this.x,this.y);
         this.isRight = false;
         this.isLeft = false;
         this.isUp = false;
@@ -20,10 +21,6 @@ var Bomber = cc.Sprite.extend({
 	closeTo: function( mapArr ) {
 		var mapPos = mapArr.getPosition();
   		return  (Math.abs( this.nextPositionX - mapPos.x ) <= 30 ) && ( Math.abs(this.nextPositionY - mapPos.y) <= 30 );
-    },
-
-    updatePosition: function() {
-        this.setPosition( cc.p( this.x, this.y ) );
     },
 
     setNextDirection: function( dir,map ) {
@@ -45,6 +42,7 @@ var Bomber = cc.Sprite.extend({
 			}
     	}
   		this.direction = this.nextDirection;
+        this.move();
     },
 
     placeBomb: function(map){
@@ -72,7 +70,7 @@ var Bomber = cc.Sprite.extend({
 
 
 
-    update: function( dt ){
+    move: function( dt ){
     	
         if(this.direction == Bomber.DIR.UP){
             this.y += Bomber.MOVE_STEP;
@@ -91,10 +89,15 @@ var Bomber = cc.Sprite.extend({
             this.direction = Bomber.DIR.STILL;
                 
         }
-
-
-
     	this.updatePosition();
+    },
+    updatePosition: function() {
+        if(this.moveAction !== undefined ){
+            this.stopAction(this.moveAction);
+        }
+
+        this.moveAction = cc.MoveTo.create( 0.05, cc.p(this.x,this.y));
+        this.runAction(this.moveAction);
     },
 
 })
