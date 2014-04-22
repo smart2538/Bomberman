@@ -1,11 +1,11 @@
 var Bomber = cc.Sprite.extend({
-	ctor: function( x , y ) {
+	ctor: function( x , y ,map ) {
 		this._super();
 		this.initWithFile( 'images/character2.png' );
 		this.nextDirection = Bomber.DIR.STILL;
 		this.nextPositionX = 0;
 		this.nextPositionY = 0;
-		this.bomb = 5 ;
+		this.bombNum = 5 ;
         this.direction = Bomber.DIR.STILL;
         this.setAnchorPoint( cc.p( 0, 0 ) );
 		this.x = x;
@@ -15,6 +15,7 @@ var Bomber = cc.Sprite.extend({
         this.isLeft = false;
         this.isUp = false;
         this.isDown = false;
+        this.map = map;
 
 	},
 
@@ -47,17 +48,18 @@ var Bomber = cc.Sprite.extend({
 
     placeBomb: function(map){
     	var mapArray = map.arr;
+        var canBomb = true;
     	for(var i = 0 ; i < mapArray.length ; i++ ){
-    		if((this.closeTo(mapArray[i]) )|| this.bomb == 0 ){
-				return false;
-			}
+    		if((this.closeTo(mapArray[i]) )|| this.bombNum == 0 ) return false;
     	}
-    	this.bomb--;
-    	return true;
+        if(canBomb == true){
+        this.bomb = new Bomb(this, this.map);
+    	this.bombNum--;
+        }
     },
 
     setBomb: function(){
-        this.bomb++;
+        this.bombNum++;
     },
 
     setDirection: function(isMove, dir ){
@@ -102,7 +104,7 @@ var Bomber = cc.Sprite.extend({
 
 })
 
-Bomber.MOVE_STEP = 5;
+Bomber.MOVE_STEP = 10;
 Bomber.DIR = {
 	LEFT: 1,
 	RIGHT: 2,

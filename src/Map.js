@@ -37,5 +37,16 @@
  
         // ...  code for drawing the maze has be left out
  
+    },
+    closeTo: function( posX,PosY ) {
+        var myPos = this.getPosition();
+        var oPosX = posX;
+        var oPosT = posY;
+        for(var i = 0 ; i<this.arr.length;i++){
+            if(( ( Math.abs( myPos.x - oPosX ) <= 30 ) && ( Math.abs( myPos.y - oPosY) <= 30 ) ) ){
+                return false;
+            }
+        }
+        return true;
     }
 });

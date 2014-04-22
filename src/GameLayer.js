@@ -11,9 +11,8 @@ var GameLayer = cc.LayerColor.extend({
         this.map.setPosition( cc.p( 0, 40 ) );
         this.addChild( this.map );
 
-        this.player = new Bomber( 10*40 , 6*40  );
+        this.player = new Bomber( 10*40 , 6*40 ,this.map );
         this.map.addChild( this.player );
-
         this.player.scheduleUpdate();
 
         this.setKeyboardEnabled( true );
@@ -34,10 +33,7 @@ var GameLayer = cc.LayerColor.extend({
             this.player.setNextDirection( Bomber.DIR.DOWN,this.map );
             break;
         case cc.KEY.space:
-            if(this.player.placeBomb(this.map)){
-                this.bomb = new Bomb(this.player);
-                this.map.addChild(this.bomb);
-            }
+            this.player.placeBomb(this.map);
             break;
 
         }
