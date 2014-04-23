@@ -13,7 +13,7 @@ var Bomb = cc.Sprite.extend({
 	explode: function(){
 		this.removeFromParent();
 		this.player.setBomb();
-		this.fire = new Fire(this.getPosition(),this.map);
+		this.fire = new Fire(1,this.getPosition(),this.map,this.player,0);
 
 	},
 	
@@ -24,4 +24,4 @@ var Bomb = cc.Sprite.extend({
 	// 	for
  //  		return ( ( Math.abs( myPos.x - oPos.x ) <= 30 ) && ( Math.abs( myPos.y - oPos.y ) <= 30 ) );
  //    }
-})
+});
