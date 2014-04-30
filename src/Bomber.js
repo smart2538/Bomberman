@@ -1,5 +1,5 @@
 var Bomber = cc.Sprite.extend({
-	ctor: function( x , y ,map ) {
+	ctor: function( x , y ,map ,gameLayer ) {
 		this._super();
 		this.initWithFile( 'images/character2.png' );
 		this.nextDirection = Bomber.DIR.STILL;
@@ -17,6 +17,7 @@ var Bomber = cc.Sprite.extend({
         this.isUp = false;
         this.isDown = false;
         this.map = map;
+        this.gameLayer = gameLayer;
 
 	},
 
@@ -103,6 +104,9 @@ var Bomber = cc.Sprite.extend({
         this.moveAction = cc.MoveTo.create( 0.05, cc.p(this.x,this.y));
         this.runAction(this.moveAction);
     },
+    gameOver: function() {
+        this.gameLayer.setKeyboardEnabled( false );
+    }
 
 })
 

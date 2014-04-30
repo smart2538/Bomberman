@@ -11,7 +11,7 @@ var GameLayer = cc.LayerColor.extend({
         this.map.setPosition( cc.p( 0, 40 ) );
         this.addChild( this.map );
 
-        this.player = new Bomber( 10*40 , 6*40 ,this.map );
+        this.player = new Bomber( 10*40 , 6*40 ,this.map,this );
         this.map.addChild( this.player );
         this.player.scheduleUpdate();
 
