@@ -105,7 +105,7 @@ var Bomber = cc.Sprite.extend({
         this.runAction(this.moveAction);
     },
     gameOver: function() {
-        this.gameLayer.setKeyboardEnabled( false );
+        this.unscheduleUpdate();
     }
 
 })

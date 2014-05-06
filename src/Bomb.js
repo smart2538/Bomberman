@@ -1,5 +1,5 @@
 var Bomb = cc.Sprite.extend({
-	ctor: function(player,map) {
+	ctor: function(player,map,index) {
 		this.player = player;
 		this.map = map;
 		this._super();

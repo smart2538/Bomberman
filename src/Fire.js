@@ -18,8 +18,11 @@ var Fire = cc.Sprite.extend({
 			this.force = force;
 		} this.explodeDirection();
 
-		if(player.closeTo(this)){
-			this.player.gameOver();
+		if(this.map.player[1].closeTo(this)){
+			this.map.player[1].gameOver();
+		}
+		if(this.map.player[0].closeTo(this)){
+			this.map.player[0].gameOver();
 		}
 	},
 

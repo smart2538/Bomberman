@@ -1,5 +1,6 @@
  var Map = cc.Node.extend({
     arr:[],
+    player:[],
         ctor: function() {
         this._super();
         this.WIDTH = 19;
@@ -47,5 +48,8 @@
             }
         }
         return false;
+    },
+    gameOver: function  () {
+        // body...
     }
 });
