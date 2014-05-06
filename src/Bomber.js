@@ -104,8 +104,8 @@ var Bomber = cc.Sprite.extend({
         this.moveAction = cc.MoveTo.create( 0.05, cc.p(this.x,this.y));
         this.runAction(this.moveAction);
     },
-    gameOver: function() {
-        this.unscheduleUpdate();
+    gameOver: function(i) {
+        this.gameLayer.setPlayerKill(i);
     }
 
 })

@@ -1,4 +1,5 @@
 var GameLayer = cc.LayerColor.extend({
+    playerKill:[],
     init: function() {
         this._super( new cc.Color4B( 127, 127, 127, 255 ) );
         this.setPosition( new cc.Point( 0, 0 ) );
@@ -21,6 +22,18 @@ var GameLayer = cc.LayerColor.extend({
 
         this.map.player.push(this.player1);
         this.map.player.push(this.player2);
+
+        this.playerKill[0] = 0;
+        this.playerKill[1] = 0;
+        this.playerOneLabel = cc.LabelTTF.create('Player1 : '+ this.playerKill[0],  'Times New Roman', 32);
+        this.playerOneLabel.setAnchorPoint(0,0);
+        this.playerOneLabel.setPosition(cc.p(20,630))
+        this.addChild(this.playerOneLabel);
+
+        this.playerTwoLabel = cc.LabelTTF.create('Player2 : '+ this.playerKill[1],  'Times New Roman', 32);
+        this.playerTwoLabel.setAnchorPoint(0,0);
+        this.playerTwoLabel.setPosition(cc.p(640,630))
+        this.addChild(this.playerTwoLabel);
 
         this.setKeyboardEnabled( true );
         return true;
@@ -59,6 +72,13 @@ var GameLayer = cc.LayerColor.extend({
             break;
 
         }
+    },
+    setPlayerKill: function(i){
+            this.playerKill[i]++;
+            console.log(this.playerKill[i]);
+            this.playerOneLabel.setString("Player1 : " + this.playerKill[0]);
+            this.playerTwoLabel.setString("Player2 : " + this.playerKill[1]);
+
     }
 });
 

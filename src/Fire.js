@@ -19,10 +19,10 @@ var Fire = cc.Sprite.extend({
 		} this.explodeDirection();
 
 		if(this.map.player[1].closeTo(this)){
-			this.map.player[1].gameOver();
+			this.map.player[1].gameOver(0);
 		}
 		if(this.map.player[0].closeTo(this)){
-			this.map.player[0].gameOver();
+			this.map.player[0].gameOver(1);
 		}
 	},
 

@@ -7,7 +7,7 @@ var Bomb = cc.Sprite.extend({
 		this.setAnchorPoint(cc.p(0,0));
         this.setPosition(this.player.getPosition().x,this.player.getPosition().y);
         this.map.addChild(this);
-		setTimeout( this.explode.bind(this) , 5000 );
+		setTimeout( this.explode.bind(this) , 3000 );
 	},
 
 	explode: function(){
