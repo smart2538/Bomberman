@@ -3,9 +3,12 @@ var GameLayer = cc.LayerColor.extend({
     init: function() {
         this._super( new cc.Color4B( 127, 127, 127, 255 ) );
         this.setPosition( new cc.Point( 0, 0 ) );
-        this.back = new Background();
+        this.back1 = new Background('images/background6.jpg');
+        this.back1.setAnchorPoint(0,0);
+        this.addChild( this.back1 );
+        this.back = new Background('images/background8.jpg');
         this.back.setAnchorPoint(0,0);
-        this.back.setScale(5);
+        this.back.setPosition(cc.p(20,0));
         this.addChild( this.back );
        
         this.map = new Map();
@@ -24,7 +27,7 @@ var GameLayer = cc.LayerColor.extend({
         this.map.player.push(this.player2);
 
         this.playerKill[0] = 0;
-        this.playerKill[1] = 0;
+        this.playerKill[1] = 0; 
         this.playerOneLabel = cc.LabelTTF.create('Player1 : '+ this.playerKill[0],  'Times New Roman', 32);
         this.playerOneLabel.setAnchorPoint(0,0);
         this.playerOneLabel.setPosition(cc.p(20,630))
@@ -35,10 +38,14 @@ var GameLayer = cc.LayerColor.extend({
         this.playerTwoLabel.setPosition(cc.p(640,630))
         this.addChild(this.playerTwoLabel);
 
-        this.timeLabel = cc
+        this.timeCountdown = 120;
+        this.timeLabel = cc.LabelTTF.create('Time : '+ this.timeCountdown,  'Times New Roman', 64);
+        this.timeLabel.setAnchorPoint(0,0);
+        this.timeLabel.setPosition(cc.p(250,600))
+        this.addChild(this.timeLabel);
+        this.schedule(this.countdown,1);
 
         this.setKeyboardEnabled( true );
-        return true;
     },
     onKeyDown: function( e ) {
         if(e == cc.KEY.a)
@@ -68,6 +75,13 @@ var GameLayer = cc.LayerColor.extend({
             this.playerOneLabel.setString("Player1 : " + this.playerKill[0]);
             this.playerTwoLabel.setString("Player2 : " + this.playerKill[1]);
 
+    },
+    countdown: function(){
+        this.timeCountdown--;
+        this.timeLabel.setString('Time : '+ this.timeCountdown);
+        // if(this.timeCountdown == 0){
+        //     ;
+        // }
     }
 });
 

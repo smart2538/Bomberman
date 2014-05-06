@@ -1,7 +1,7 @@
 var Background = cc.Sprite.extend({
-	ctor: function() {
+	ctor: function(link) {
 		this._super();
-		this.initWithFile( 'images/background1.jpg' );
-		this.setScale(5);
+		this.initWithFile( link );
+		
 	}
 })
