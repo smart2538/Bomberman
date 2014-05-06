@@ -35,47 +35,36 @@ var GameLayer = cc.LayerColor.extend({
         this.playerTwoLabel.setPosition(cc.p(640,630))
         this.addChild(this.playerTwoLabel);
 
+        this.timeLabel = cc
+
         this.setKeyboardEnabled( true );
         return true;
     },
     onKeyDown: function( e ) {
-        switch( e ) {
-        case cc.KEY.a:
+        if(e == cc.KEY.a)
             this.player1.setNextDirection( Bomber.DIR.LEFT,this.map );
-            break;
-        case cc.KEY.d:
+        if(e == cc.KEY.d)
             this.player1.setNextDirection( Bomber.DIR.RIGHT,this.map );
-            break;
-        case cc.KEY.w:
+        if(e == cc.KEY.w)
             this.player1.setNextDirection( Bomber.DIR.UP,this.map );
-            break;
-        case cc.KEY.s:
+        if(e == cc.KEY.s)
             this.player1.setNextDirection( Bomber.DIR.DOWN,this.map );
-            break;
-        case cc.KEY.space:
+        if(e == cc.KEY.space)
             this.player1.placeBomb(this.map);
-            break;
-        case cc.KEY.left:
+        if(e == cc.KEY.left)
             this.player2.setNextDirection( Bomber.DIR.LEFT,this.map );
-            break;
-        case cc.KEY.right:
+        if(e == cc.KEY.right)
             this.player2.setNextDirection( Bomber.DIR.RIGHT,this.map );
-            break;
-        case cc.KEY.up:
+        if(e == cc.KEY.up)
             this.player2.setNextDirection( Bomber.DIR.UP,this.map );
-            break;
-        case cc.KEY.down:
+        if(e == cc.KEY.down)
             this.player2.setNextDirection( Bomber.DIR.DOWN,this.map );
-            break;
-        case 96:
+        if(e == 96)
             this.player2.placeBomb(this.map);
-            break;
 
-        }
     },
     setPlayerKill: function(i){
-            this.playerKill[i]++;
-            console.log(this.playerKill[i]);
+            this.playerKill[i]++;    
             this.playerOneLabel.setString("Player1 : " + this.playerKill[0]);
             this.playerTwoLabel.setString("Player2 : " + this.playerKill[1]);
 
