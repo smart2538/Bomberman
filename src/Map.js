@@ -1,6 +1,7 @@
  var Map = cc.Node.extend({
     arr:[],
     player:[],
+    bomb:[],
         ctor: function() {
         this._super();
         this.WIDTH = 19;

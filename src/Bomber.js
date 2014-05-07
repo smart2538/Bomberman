@@ -1,8 +1,13 @@
 var Bomber = cc.Sprite.extend({
-	ctor: function( x , y ,map ,gameLayer ) {
+	ctor: function( x , y ,map ,gameLayer,type) {
 		this._super();
-		this.initWithFile( 'images/character2.png' );
-		this.nextDirection = Bomber.DIR.STILL;
+        if(type == 1){
+            this.initWithFile( 'images/character1.png' );
+		}if(type == 2){
+            this.initWithFile( 'images/character2.png' );
+        }
+
+        this.nextDirection = Bomber.DIR.STILL;
 		this.nextPositionX = 0;
 		this.nextPositionY = 0;
 		this.bombNum = 5 ;
@@ -30,6 +35,7 @@ var Bomber = cc.Sprite.extend({
 
     	this.nextDirection = dir;
     	var mapArray = map.arr;
+        var mapBomb = map.bomb;
     	this.nextPositionX = this.x;
     	this.nextPositionY = this.y;
     	
@@ -41,22 +47,33 @@ var Bomber = cc.Sprite.extend({
     	for(var i = 0 ; i < mapArray.length ; i++ ){
     		if( this.closeTo(mapArray[i]) ){
 				this.nextDirection = Bomber.DIR.STILL;
+                this.nextPositionX = this.x;
+                this.nextPositionY = this.y;
 				break;
 			}
     	}
+        for(var i = 0 ; i < mapBomb.length ; i++ ){
+            if( this.closeTo(mapBomb[i]) ){
+                this.nextDirection = Bomber.DIR.STILL;
+                this.nextPositionX = this.x;
+                this.nextPositionY = this.y;
+                break;
+            }
+        }
   		this.direction = this.nextDirection;
         this.move();
     },
 
-    placeBomb: function(map){
-    	var mapArray = map.arr;
+    placeBomb: function(map,type){
+    	var mapBomb = map.bomb;
         var canBomb = true;
-    	for(var i = 0 ; i < mapArray.length ; i++ ){
-    		if((this.closeTo(mapArray[i]) )|| this.bombNum == 0 ) return false;
+    	for(var i = 0 ; i < mapBomb.length ; i++ ){
+    		if((this.closeTo(mapBomb[i]) )|| this.bombNum == 0  ) return false;
     	}
         if( (canBomb == true)/* && ( (this.getPosition.x % 40) + 20 == 20) &&  ( (this.getPosition.y % 40) <= 10 )*/){
 
-        this.bomb = new Bomb(this, this.map);
+        this.bomb = new Bomb(this, this.map,type);
+        this.map.bomb.push(this.bomb);
     	this.bombNum--;
         }
     },
@@ -101,7 +118,7 @@ var Bomber = cc.Sprite.extend({
             this.stopAction(this.moveAction);
         }
 
-        this.moveAction = cc.MoveTo.create( 0.05, cc.p(this.x,this.y));
+        this.moveAction = cc.MoveTo.create( 0.001 , cc.p(this.x,this.y));
         this.runAction(this.moveAction);
     },
     gameOver: function(i) {
@@ -110,7 +127,7 @@ var Bomber = cc.Sprite.extend({
 
 })
 
-Bomber.MOVE_STEP = 10;
+Bomber.MOVE_STEP = 40;
 Bomber.DIR = {
 	LEFT: 1,
 	RIGHT: 2,
