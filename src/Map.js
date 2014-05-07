@@ -50,7 +50,4 @@
         }
         return false;
     },
-    gameOver: function  () {
-        // body...
-    }
 });

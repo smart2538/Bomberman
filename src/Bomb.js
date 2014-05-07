@@ -22,16 +22,5 @@ var Bomb = cc.Sprite.extend({
 		this.setPosition(cc.p(850,750));
 		this.removeFromParent();
 		this.player.setBomb();
-		
-
-
 	},
-	
-
-	// closeTo: function( obj ) {
-	// 	var myPos = this.getPosition();
-	// 	var oPos = obj.getPosition();
-	// 	for
- //  		return ( ( Math.abs( myPos.x - oPos.x ) <= 30 ) && ( Math.abs( myPos.y - oPos.y ) <= 30 ) );
- //    }
 });

@@ -3,13 +3,13 @@ var GameLayer = cc.LayerColor.extend({
     init: function() {
         this._super( new cc.Color4B( 127, 127, 127, 255 ) );
         this.setPosition( new cc.Point( 0, 0 ) );
-        this.back1 = new Background('images/background6.jpg');
-        this.back1.setAnchorPoint(0,0);
-        this.addChild( this.back1 );
-        this.back = new Background('images/background8.jpg');
-        this.back.setAnchorPoint(0,0);
-        this.back.setPosition(cc.p(20,0));
-        this.addChild( this.back );
+        this.back_1 = new Background('images/background6.jpg');
+        this.back_1.setAnchorPoint(0,0);
+        this.addChild( this.back_1 );
+        this.back_2 = new Background('images/background8.jpg');
+        this.back_2.setAnchorPoint(0,0);
+        this.back_2.setPosition(cc.p(20,0));
+        this.addChild( this.back_2 );
        
         this.map = new Map();
         this.map.setPosition( cc.p( 0, 40 ) );
@@ -88,11 +88,9 @@ var GameLayer = cc.LayerColor.extend({
                         this.result = "Player1 Win!";
                     }else this.result = "Player2 Win!"
             this.resultLabel = cc.LabelTTF.create( this.result,  'Courier Regular', 64);
-
             this.resultLabel.setAnchorPoint(0,0);
             this.resultLabel.setPosition(cc.p(230,300))
             this.resultLabel.setHorizontalAlignment(cc.TEXT_ALIGNMENT_CENTER);
-            //this.resultLabel.setVerticalAlignment(cc.TEXT_ALIGNMENT_CENTER);
             this.addChild(this.resultLabel);
         }
     }

@@ -51,31 +51,28 @@ var Bomber = cc.Sprite.extend({
                 this.nextPositionY = this.y;
 				break;
 			}
-    	}
-        for(var i = 0 ; i < mapBomb.length ; i++ ){
-            if( this.closeTo(mapBomb[i]) ){
-                this.nextDirection = Bomber.DIR.STILL;
-                this.nextPositionX = this.x;
-                this.nextPositionY = this.y;
-                break;
+            if(i < mapBomb.length){
+                if( this.closeTo(mapBomb[i]) ){
+                    this.nextDirection = Bomber.DIR.STILL;
+                    this.nextPositionX = this.x;
+                    this.nextPositionY = this.y;
+                    break;
+                }
             }
-        }
+    	}
   		this.direction = this.nextDirection;
         this.move();
     },
 
     placeBomb: function(map,type){
     	var mapBomb = map.bomb;
-        var canBomb = true;
     	for(var i = 0 ; i < mapBomb.length ; i++ ){
     		if((this.closeTo(mapBomb[i]) )|| this.bombNum == 0  ) return false;
     	}
-        if( (canBomb == true)/* && ( (this.getPosition.x % 40) + 20 == 20) &&  ( (this.getPosition.y % 40) <= 10 )*/){
-
         this.bomb = new Bomb(this, this.map,type);
         this.map.bomb.push(this.bomb);
     	this.bombNum--;
-        }
+        
     },
 
     setBomb: function(){
@@ -117,7 +114,6 @@ var Bomber = cc.Sprite.extend({
         if(this.moveAction !== undefined ){
             this.stopAction(this.moveAction);
         }
-
         this.moveAction = cc.MoveTo.create( 0.001 , cc.p(this.x,this.y));
         this.runAction(this.moveAction);
     },
