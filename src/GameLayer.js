@@ -3,10 +3,10 @@ var GameLayer = cc.LayerColor.extend({
     init: function() {
         this._super( new cc.Color4B( 127, 127, 127, 255 ) );
         this.setPosition( new cc.Point( 0, 0 ) );
-        this.back_1 = new Background('images/background10.jpg');
+        this.back_1 = new Background(layerBackground);
         this.back_1.setAnchorPoint(0,0);
         this.addChild( this.back_1 );
-        this.back_2 = new Background('images/background8.jpg');
+        this.back_2 = new Background(mapBackground);
         this.back_2.setAnchorPoint(0,0);
         this.back_2.setPosition(cc.p(20,0));
         this.addChild( this.back_2 );
@@ -42,12 +42,13 @@ var GameLayer = cc.LayerColor.extend({
         this.playerTwoLabel.setPosition(cc.p(630,630))
         this.addChild(this.playerTwoLabel);
 
-        this.timeCountdown =  120   ;
+        this.timeCountdown =  180;
         this.timeLabel = cc.LabelTTF.create('Time : '+ this.timeCountdown,  'Courier Regular', 64);
         this.timeLabel.setAnchorPoint(0,0);
         this.timeLabel.setPosition(cc.p(250,600))
         this.addChild(this.timeLabel);
         this.schedule(this.countdown,1);
+        this.scheduleUpdate();
 
         this.setKeyboardEnabled( true );
     },
@@ -97,6 +98,10 @@ var GameLayer = cc.LayerColor.extend({
             this.resultLabel.setHorizontalAlignment(cc.TEXT_ALIGNMENT_CENTER);
             this.addChild(this.resultLabel);
         }
+    },
+    update: function(dt){
+        this.player1.scheduleUpdate();
+        this.player2.scheduleUpdate();
     }
 });
 

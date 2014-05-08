@@ -21,6 +21,7 @@
             "src/fire.js",
             "src/ItemFire.js",
             "src/itemBomb.js",
+            "src/ItemImmortal.js",
             'src/MenuScene.js',
             'src/resorce.js'    //add your own files in order here
         ]

@@ -4,7 +4,7 @@ var Fire = cc.Sprite.extend({
 		this.map = map;
 		this.player = player;
 		this.position = position;
-		this.initWithFile( 'images/fire.png' );
+		this.initWithFile( fire );
 		this.setAnchorPoint(cc.p(0,0));
 		this.setPosition(position.x,position.y);
 		this.map.addChild(this);

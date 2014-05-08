@@ -5,7 +5,7 @@ var MenuLayer = cc.Layer.extend({
     },
     init:function(){
         this._super();
-
+        this.begin = false;
         this.setTouchEnabled(true);
         this.setTouchMode(1);
 
@@ -47,10 +47,13 @@ var MenuLayer = cc.Layer.extend({
         // this.addChild(textField,300);
     },
     onTouchBegan:function(touch, event) {
-        this.runAction(cc.FadeOut.create(2));
-        var audioEngine = cc.AudioEngine.getInstance();
-        audioEngine.stopMusic();
-        this.onPlay();
+        if(this.begin == false){
+            this.runAction(cc.FadeOut.create(2));
+            var audioEngine = cc.AudioEngine.getInstance();
+            audioEngine.stopMusic();
+            this.onPlay();
+            this.begin=true;
+        }
     },
 
     onPlay : function(){

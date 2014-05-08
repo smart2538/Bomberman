@@ -1,7 +1,7 @@
 var Block = cc.Sprite.extend({
 	ctor: function(map,x,y) {
 		this._super();
-		this.initWithFile( 'images/blocks.png' );
+		this.initWithFile( block );
 		this.map = map;
 		this.setAnchorPoint(cc.p(0,0));
         this.setPosition(x,y);
@@ -31,7 +31,10 @@ var Block = cc.Sprite.extend({
     	}else if(random == 1){
     		this.item = new ItemFire(this.map,this.getPosition().x,this.getPosition().y);
         	this.map.addChild(this.item);
-    	}
+    	}else if(random == 2){
+    		this.item = new ItemImmortal(this.map,this.getPosition().x,this.getPosition().y);
+        	this.map.addChild(this.item);
+        }
     	this.setPosition(cc.p(850,750));
 	}
 })

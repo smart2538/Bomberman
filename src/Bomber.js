@@ -2,9 +2,9 @@ var Bomber = cc.Sprite.extend({
 	ctor: function( x , y ,map ,gameLayer,type) {
 		this._super();
         if(type == 1){
-            this.initWithFile( 'images/boy.png' );
+            this.initWithFile( boy );
 		}if(type == 2){
-            this.initWithFile( 'images/girl.png' );
+            this.initWithFile( girl );
         }
 
         this.nextDirection = Bomber.DIR.STILL;
@@ -23,6 +23,9 @@ var Bomber = cc.Sprite.extend({
         this.isDown = false;
         this.map = map;
         this.gameLayer = gameLayer;
+        this.immortal = false;
+        this.scheduleUpdate();
+
 
 	},
 
@@ -131,7 +134,32 @@ var Bomber = cc.Sprite.extend({
         this.runAction(this.moveAction);
     },
     gameOver: function(i) {
-        this.gameLayer.setPlayerKill(i);
+        if(this.immortal == false){
+            this.gameLayer.setPlayerKill(i);
+            this.immortal = true;
+            setTimeout(this.setImmortal.bind(this),3000);
+        }
+    },
+    setImmortalAction: function(){
+        if(this.immortal == false){
+            this.immortal = true;
+            setTimeout(this.setImmortal.bind(this),3000);
+        }
+    },
+    setImmortal: function(){
+        this.immortal = false;
+    },
+    update: function(dt){
+        if(this.immortal == true){
+            if(!this.immortalAction || this.immortalAction.isDone()){
+                var fadeIn = cc.FadeIn.create(0.1);
+                var fadeOut = cc.FadeOut.create(0.1);
+                var delay = cc.DelayTime.create(0.1);
+                this.immortalAction = cc.Sequence.create(fadeOut,delay,fadeIn);
+                this.runAction(this.immortalAction);
+                
+            }
+        }
     }
 
 })

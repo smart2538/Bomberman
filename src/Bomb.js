@@ -4,11 +4,10 @@ var Bomb = cc.Sprite.extend({
 		this.map = map;
 		this._super();
 		if(type == 1){
-			this.initWithFile( 'images/bomb1.png' );
+			this.initWithFile( blueBomb );
 		}
 		if(type == 2){
-			console.log("kljdkdl");
-			this.initWithFile( 'images/bomb2.png' );
+			this.initWithFile( redBomb );
 		}
 		this.setAnchorPoint(cc.p(0,0));
         this.setPosition(this.player.getPosition().x,this.player.getPosition().y);

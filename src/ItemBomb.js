@@ -1,7 +1,7 @@
 var ItemBomb = cc.Sprite.extend({
 	ctor: function(map,x,y) {
 		this._super();
-		this.initWithFile( 'images/itembomb.png' );
+		this.initWithFile( itemBomb );
 		this.map = map;
 		this.setAnchorPoint(cc.p(0,0));
         this.setPosition(x,y);

@@ -1,7 +1,7 @@
-var ItemFire = cc.Sprite.extend({
+var ItemImmortal = cc.Sprite.extend({
 	ctor: function(map,x,y) {
 		this._super();
-		this.initWithFile( itemFire );
+		this.initWithFile( itemImmortal );
 		this.map = map;
 		this.setAnchorPoint(cc.p(0,0));
         this.setPosition(x,y);
@@ -12,7 +12,7 @@ var ItemFire = cc.Sprite.extend({
 		for(var i = 0 ; i<this.map.player.length ; i++){
 			if(Math.abs(this.map.player[i].getPosition().x - this.getPosition().x) <=30 &&
 			   Math.abs(this.map.player[i].getPosition().y - this.getPosition().y) <=30){
-					this.map.player[i].setBombFire();
+					this.map.player[i].setImmortalAction();
 					this.removeFromParent();
 			}
 			
