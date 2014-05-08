@@ -10,6 +10,9 @@ var GameLayer = cc.LayerColor.extend({
         this.back_2.setAnchorPoint(0,0);
         this.back_2.setPosition(cc.p(20,0));
         this.addChild( this.back_2 );
+
+        var audioEngine = cc.AudioEngine.getInstance();
+        audioEngine.playMusic(battleSong, true);
        
         this.map = new Map();
         this.map.setPosition( cc.p( 0, 40 ) );

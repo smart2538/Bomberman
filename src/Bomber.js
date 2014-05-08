@@ -2,9 +2,9 @@ var Bomber = cc.Sprite.extend({
 	ctor: function( x , y ,map ,gameLayer,type) {
 		this._super();
         if(type == 1){
-            this.initWithFile( 'images/character1.png' );
+            this.initWithFile( 'images/boy.png' );
 		}if(type == 2){
-            this.initWithFile( 'images/character2.png' );
+            this.initWithFile( 'images/girl.png' );
         }
 
         this.nextDirection = Bomber.DIR.STILL;
