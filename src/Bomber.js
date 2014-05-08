@@ -10,8 +10,8 @@ var Bomber = cc.Sprite.extend({
         this.nextDirection = Bomber.DIR.STILL;
 		this.nextPositionX = 0;
 		this.nextPositionY = 0;
-		this.bombNum = 5 ;
-        this.force = 5;
+		this.bombNum = 1;
+        this.force = 2;
         this.direction = Bomber.DIR.STILL;
         this.setAnchorPoint( cc.p( 0, 0 ) );
 		this.x = x;
@@ -35,6 +35,7 @@ var Bomber = cc.Sprite.extend({
 
     	this.nextDirection = dir;
     	var mapArray = map.arr;
+        var mapBlock = map.block;
         var mapBomb = map.bomb;
     	this.nextPositionX = this.x;
     	this.nextPositionY = this.y;
@@ -60,6 +61,15 @@ var Bomber = cc.Sprite.extend({
                 }
             }
     	}
+        for(var i = 0 ; i < mapBlock.length ; i++ ){
+            if( this.closeTo(mapBlock[i]) ){
+                this.nextDirection = Bomber.DIR.STILL;
+                this.nextPositionX = this.x;
+                this.nextPositionY = this.y;
+                break;
+            }
+        }
+
   		this.direction = this.nextDirection;
         this.move();
     },
@@ -77,6 +87,9 @@ var Bomber = cc.Sprite.extend({
 
     setBomb: function(){
         this.bombNum++;
+    },
+    setBombFire: function(){
+        this.force++
     },
 
     setDirection: function(isMove, dir ){

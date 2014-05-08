@@ -18,7 +18,7 @@ var Bomb = cc.Sprite.extend({
 
 
 	explode: function(){
-		this.fire = new Fire(1,this.getPosition(),this.map,this.player,0);
+		this.fire = new Fire(1,this.getPosition(),this.map,this.player,this.player.force);
 		this.setPosition(cc.p(850,750));
 		this.removeFromParent();
 		this.player.setBomb();

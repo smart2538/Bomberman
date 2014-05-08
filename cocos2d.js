@@ -18,7 +18,9 @@
             'src/Map.js' ,
             'src/Bomber.js' ,
             "src/Bomb.js",
-            "src/fire.js"    //add your own files in order here
+            "src/fire.js",
+            "src/ItemFire.js",
+            "src/itemBomb.js"    //add your own files in order here
         ]
     };
 

@@ -3,7 +3,7 @@ var GameLayer = cc.LayerColor.extend({
     init: function() {
         this._super( new cc.Color4B( 127, 127, 127, 255 ) );
         this.setPosition( new cc.Point( 0, 0 ) );
-        this.back_1 = new Background('images/background6.jpg');
+        this.back_1 = new Background('images/background10.jpg');
         this.back_1.setAnchorPoint(0,0);
         this.addChild( this.back_1 );
         this.back_2 = new Background('images/background8.jpg');
@@ -23,6 +23,7 @@ var GameLayer = cc.LayerColor.extend({
         this.map.addChild( this.player2 );
         this.player2.scheduleUpdate();
 
+
         this.map.player.push(this.player1);
         this.map.player.push(this.player2);
 
@@ -38,7 +39,7 @@ var GameLayer = cc.LayerColor.extend({
         this.playerTwoLabel.setPosition(cc.p(630,630))
         this.addChild(this.playerTwoLabel);
 
-        this.timeCountdown =  20   ;
+        this.timeCountdown =  120   ;
         this.timeLabel = cc.LabelTTF.create('Time : '+ this.timeCountdown,  'Courier Regular', 64);
         this.timeLabel.setAnchorPoint(0,0);
         this.timeLabel.setPosition(cc.p(250,600))
