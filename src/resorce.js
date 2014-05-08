@@ -1,5 +1,6 @@
  var titleSong  = 'sound/screen.mp3';
  var battleSong = 'sound/battleSong.mp3';
+ var victorySong = 'sound/victory.mp3';
 
  var block = 'images/block1.png';
  var itemImmortal = 'images/itemImmortal.png';
@@ -20,6 +21,7 @@
 var g_resources = [
 		{src:titleSong},
 		{src:battleSong},
+		{src:victorySong},
 		{src:block},
 		{src:itemImmortal},
 		{src:itemBomb},
