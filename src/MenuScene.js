@@ -16,12 +16,13 @@ var MenuLayer = cc.Layer.extend({
         black = cc.Sprite.create("images/black.jpg");
         black.setAnchorPoint(0,0);
         black.setPosition(cc.p(0,0));
+        cc.AudioEngine.getInstance().playEffect( bomberman );
         var audioEngine = cc.AudioEngine.getInstance();
         audioEngine.playMusic(titleSong, true);
         audioEngine.setMusicVolume(0.5);
 
 
-        var bg = cc.Sprite.create('images/homescreen.jpg');
+        var bg = cc.Sprite.create(homeScreen);
         bg.setPosition(centerpos);
 
         this.addChild(bg);
@@ -49,7 +50,9 @@ var MenuLayer = cc.Layer.extend({
     onTouchBegan:function(touch, event) {
         if(this.begin == false){
             this.runAction(cc.FadeOut.create(2));
+            cc.AudioEngine.getInstance().playEffect( start );
             var audioEngine = cc.AudioEngine.getInstance();
+            audioEngine.setMusicVolume(0.5);
             audioEngine.stopMusic();
             this.onPlay();
             this.begin=true;

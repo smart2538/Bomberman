@@ -2,6 +2,13 @@
  var battleSong = 'sound/battleSong.mp3';
  var victorySong = 'sound/victory.mp3';
 
+ var bomberman = 'sound/effect/bomberman.wav';
+ var bomb = 'sound/effect/bomb.wav';
+ var start = 'sound/effect/start.wav';
+ var gameOver = 'sound/effect/gameOver.wav';
+ var timeOut = 'sound/effect/timeOut.wav';
+ var placeBomb = 'sound/effect/placeBomb.wav';
+
  var block = 'images/block1.png';
  var itemImmortal = 'images/itemImmortal.png';
  var itemFire = 'images/itemfire.png';
@@ -22,6 +29,12 @@ var g_resources = [
 		{src:titleSong},
 		{src:battleSong},
 		{src:victorySong},
+		{src:bomberman},
+		{src:bomb},
+		{src:start},
+		{src:gameOver},
+		{src:timeOut},
+		{src:placeBomb},
 		{src:block},
 		{src:itemImmortal},
 		{src:itemBomb},

@@ -3,6 +3,8 @@ var Bomb = cc.Sprite.extend({
 		this.player = player;
 		this.map = map;
 		this._super();
+		var audio = cc.AudioEngine.getInstance();
+			audio.playEffect( placeBomb );
 		if(type == 1){
 			this.initWithFile( blueBomb );
 		}

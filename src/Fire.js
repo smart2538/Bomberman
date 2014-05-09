@@ -14,6 +14,8 @@ var Fire = cc.Sprite.extend({
 		
 
 		if(type == 1 ){
+			var audio = cc.AudioEngine.getInstance();
+			audio.playEffect( bomb );
 			this.force = this.player.force;
 			this.explode();
 		} 

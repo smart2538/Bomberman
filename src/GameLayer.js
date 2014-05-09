@@ -42,7 +42,7 @@ var GameLayer = cc.LayerColor.extend({
         this.playerTwoLabel.setPosition(cc.p(630,630))
         this.addChild(this.playerTwoLabel);
 
-        this.timeCountdown =  10;
+        this.timeCountdown =  180;
         this.timeLabel = cc.LabelTTF.create('Time : '+ this.timeCountdown,  'Courier Regular', 64);
         this.timeLabel.setAnchorPoint(0,0);
         this.timeLabel.setPosition(cc.p(250,600))
@@ -86,6 +86,7 @@ var GameLayer = cc.LayerColor.extend({
         this.timeLabel.setString('Time : '+ this.timeCountdown);
         if(this.timeCountdown == 0){
             var audioEngine = cc.AudioEngine.getInstance();
+            audioEngine.playEffect( timeOut );
             audioEngine.playMusic(victorySong, true);
             this.unschedule(this.countdown);
             this.setKeyboardEnabled(false);
